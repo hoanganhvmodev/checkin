@@ -1,9 +1,8 @@
 import "./globals.css";
 import type { Metadata } from "next";
 
-import Header from "@/components/header";
-import Footer from "@/components/footer";
 import { ReduxProvider } from "@/redux/provider";
+import { AuthLayout } from "@/components/layout/Auth";
 
 export const metadata: Metadata = {
   title: "CheckinGPS",
@@ -19,9 +18,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <ReduxProvider>
-          <Header />
-          {children}
-          <Footer />
+          <AuthLayout>{children}</AuthLayout>
         </ReduxProvider>
       </body>
     </html>

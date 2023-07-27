@@ -1,5 +1,6 @@
 import axios from "axios";
 import { redirect } from "next/navigation";
+import { getCookie } from "cookies-next";
 
 const axiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_URL_API,
@@ -12,11 +13,11 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
   (config) => {
     // Modify the request config here (add headers, authentication tokens)
-    const accessToken = JSON.parse(localStorage.getItem("token"));
+    const accessToken = getCookie("access_token");
 
     // If token is present add it to request's Authorization Header
     if (accessToken) {
-      if (config.headers) config.headers.token = accessToken;
+      if (config.headers) config.headers.Authorization = accessToken;
     }
     return config;
   },
@@ -33,9 +34,6 @@ axiosInstance.interceptors.response.use(
     return response;
   },
   (error) => {
-    if (error.response.status === 401) {
-      redirect("/login");
-    }
     // Handle response errors here
     return Promise.reject(error);
   }
