@@ -4,9 +4,10 @@ import Image from "next/image";
 import { useGoogleLogin } from "@react-oauth/google";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
+import { setCookie } from "cookies-next";
 
 import { AppDispatch } from "@/redux/store";
-import { logIn, logOut } from "@/redux/features/auth-slice";
+import { logIn } from "@/redux/features/auth-slice";
 import apiAuth from "@/api/auth";
 
 const LoginUserPage = () => {
@@ -21,6 +22,9 @@ const LoginUserPage = () => {
       };
       const response = await apiAuth.login(payload);
       if (response.status === 200) {
+        setCookie("access_token", response.data.token, {
+          maxAge: 60 * 60 * 24 * 10,
+        });
         dispatch(logIn(response.data.user));
 
         router.push("/");
@@ -40,7 +44,7 @@ const LoginUserPage = () => {
   });
 
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center mt-20">
       <div className="px-16 py-10 w-[400px] text-center bg-white border">
         <Image
           src="/vmo-logo.png"
