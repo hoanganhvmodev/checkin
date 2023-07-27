@@ -35,7 +35,7 @@ export function AuthLayout({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <>
+    <div>
       {pathname !== "/login" && (
         <div style={{ boxShadow: "0 0.7rem 1rem hsla(0,6%,45%,.18)" }}>
           <Header />
@@ -43,6 +43,6 @@ export function AuthLayout({ children }: { children: React.ReactNode }) {
       )}
       {children}
       {pathname !== "/login" && <Footer />}
-    </>
+    </div>
   );
 }
