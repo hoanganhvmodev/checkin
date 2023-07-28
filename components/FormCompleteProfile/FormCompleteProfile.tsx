@@ -8,7 +8,7 @@ import apiCompleteProfile from "@/api/complete-profile";
 import { Department, Departments } from "@/interfaces/profile";
 
 interface FormData {
-  id: number;
+  code: number;
   department_id: number;
   center: string;
 }
@@ -26,7 +26,7 @@ export default function FormCompleteProfile({ handleForm }: PropsSubmit) {
   const optionDepartment: ValueDepartment[] = [];
   const schema = yup
     .object({
-      id: yup.number().min(4).positive().integer().required(),
+      code: yup.number().min(4).positive().integer().required(),
       department_id: yup.number().positive().integer().required(),
       center: yup.string().required(),
     })
@@ -74,7 +74,7 @@ export default function FormCompleteProfile({ handleForm }: PropsSubmit) {
     <div>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col pb-12 pt-8 px-10 border rounded-lg bg-[#f3f3ed] w-[460px] mx-auto max-w-screen-xl"
+        className="flex flex-col pb-12 pt-8 px-10 border rounded-lg bg-[#f3f3ed] w-[460px] mx-auto max-w-screen-xl shadow-lg"
       >
         <div className="flex justify-start text-[#da783f] font-bold text-xl mb-8">
           COMPLETE PROFILE
@@ -85,10 +85,10 @@ export default function FormCompleteProfile({ handleForm }: PropsSubmit) {
             className="outline-none p-2 border mt-2"
             type="number"
             placeholder="ID nhân viên"
-            {...register("id")}
+            {...register("code")}
           />
-          {errors.id && (
-            <span className="text-[red]">{errors.id?.message}</span>
+          {errors.code && (
+            <span className="text-[red]">{errors.code?.message}</span>
           )}
         </div>
         <div className="flex flex-col mb-8">

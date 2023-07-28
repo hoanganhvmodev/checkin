@@ -7,7 +7,7 @@ const apiCompleteProfile = {
   },
 
   updateProfile(data) {
-    const url = `/auth/get_info_by_token`;
+    const url = `/auth/complete_profie`;
     return axiosInstance.put(url, data);
   },
 };
