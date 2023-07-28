@@ -1,6 +1,5 @@
 export interface Address {
   suburb: string;
-  city_district: string;
   city: string;
   country: string;
 }

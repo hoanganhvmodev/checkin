@@ -1,5 +1,5 @@
 export interface CompleteProfile {
-    id: number;
+    code: number;
     department_id: number;
     center: string;
 }

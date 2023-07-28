@@ -27,7 +27,10 @@ const LoginUserPage = () => {
         });
         dispatch(logIn(response.data.user));
 
-        router.push("/");
+        if (response?.data && response?.data?.user?.status === "Active") {
+          router.push("/complete-profile");
+        }
+        return router.push("/");
       }
     } catch (error) {
       console.log("error", error);

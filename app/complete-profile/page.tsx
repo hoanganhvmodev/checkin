@@ -1,21 +1,32 @@
 "use client";
 
-import { useLocation } from "@/hook/useLocation";
+import { CompleteProfile } from "@/interfaces/profile";
+import { useRouter } from "next/navigation";
+import apiCompleteProfile from "@/api/complete-profile";
+
 import FormCompleteProfile from "@/components/FormCompleteProfile/FormCompleteProfile";
+import { useAppSelector } from "@/redux/store";
 
 const CompleteProfile = () => {
-  const { address, lat, lon } = useLocation();
-  const test = (data: any) => {
-    console.log(123, data);
+  const user = useAppSelector((state) => state.authReducer.value);
+  const router = useRouter();
+  console.log(12345, user);
+
+  const completeProfile = async (data: CompleteProfile) => {
+    try {
+      const response = await apiCompleteProfile.updateProfile(data);
+      if (response.status === 200) {
+        alert("Complete profile success");
+        router.push("/checkin");
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
-    <div className="flex flex-col items-center justify-between p-12">
-      <div>home page</div>
-      <div>
-        {lat} {lon} {address?.city}
-      </div>
-      <FormCompleteProfile handleForm={test} />
+    <div className="flex flex-col items-center justify-between p-12 h-[calc(100vh-228px)]">
+      <FormCompleteProfile handleForm={completeProfile} />
     </div>
   );
 };
