@@ -1,5 +1,4 @@
 import axios from "axios";
-import { redirect } from "next/navigation";
 import { getCookie } from "cookies-next";
 
 const axiosInstance = axios.create({
