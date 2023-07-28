@@ -17,6 +17,7 @@ export function AuthLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
   useEffect(() => {
+    if (pathname === "/login") return;
     getUser();
   }, []);
 
@@ -28,19 +29,13 @@ export function AuthLayout({ children }: { children: React.ReactNode }) {
       }
     } catch (error: any) {
       console.log("error", error);
-      if (error.response.status === 401) {
-        router.push("/login");
-      }
+      router.push("/login");
     }
   };
 
   return (
     <div>
-      {pathname !== "/login" && (
-        <div style={{ boxShadow: "0 0.7rem 1rem hsla(0,6%,45%,.18)" }}>
-          <Header />
-        </div>
-      )}
+      {pathname !== "/login" && <Header />}
       {children}
       {pathname !== "/login" && <Footer />}
     </div>

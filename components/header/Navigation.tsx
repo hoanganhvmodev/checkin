@@ -67,7 +67,7 @@ const Navigation = () => {
   };
 
   return (
-    <div className="flex justify-between items-center h-20">
+    <div className="flex justify-between items-center h-32">
       <Link href="/">
         <Image src="/vmo-logo.png" alt="logo-vmo" width="150" height="100" />
       </Link>
