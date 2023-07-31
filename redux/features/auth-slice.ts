@@ -33,8 +33,20 @@ export const auth = createSlice({
         },
       };
     },
+    updateUserCheckin: (state: any) => {
+      return {
+        ...state,
+        value: {
+          ...state.value,
+          user: {
+            ...state.value.user,
+            is_checkin_today: true,
+          },
+        },
+      };
+    },
   },
 });
 
-export const { logIn, logOut } = auth.actions;
+export const { logIn, logOut, updateUserCheckin } = auth.actions;
 export default auth.reducer;

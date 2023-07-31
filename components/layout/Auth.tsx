@@ -26,6 +26,9 @@ export function AuthLayout({ children }: { children: React.ReactNode }) {
       const response = await apiAuth.getUser();
       if (response.status === 200) {
         dispatch(logIn(response.data.user));
+        if (response.data.user.status === "Draft") {
+          router.push("/complete-profile");
+        }
       }
     } catch (error: any) {
       console.log("error", error);
