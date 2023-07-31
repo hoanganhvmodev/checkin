@@ -1,13 +1,13 @@
 import axiosInstance from "./axios-instance";
 
 const apiAttendences = {
-  getAttendencesManagementForAdmin() {
+  getAttendencesManagementForAdmin(params) {
     const url = "/admin/attendances";
-    return axiosInstance.get(url);
+    return axiosInstance.get(url, { params });
   },
-  getAttendencesUser() {
+  getAttendencesUser(params) {
     const url = "/user/checkins";
-    return axiosInstance.get(url);
+    return axiosInstance.get(url, { params });
   },
 };
 
