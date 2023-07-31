@@ -8,4 +8,5 @@ export interface User {
   id: 2;
   role: string;
   status: string;
+  is_checkin_today: boolean;
 }
