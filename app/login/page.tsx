@@ -28,7 +28,7 @@ const LoginUserPage = () => {
         dispatch(logIn(response.data.user));
 
         if (response?.data && response?.data?.user?.status === "Draft") {
-          router.push("/complete-profile");
+          return router.push("/complete-profile");
         }
         return router.push("/");
       }
